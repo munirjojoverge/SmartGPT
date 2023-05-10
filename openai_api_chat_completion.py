@@ -1,3 +1,8 @@
+# ********************************************************
+#                      Munir Jojo-Verge (c)
+#                         May 10th 2023
+# ********************************************************
+
 import openai
 from omegaconf import DictConfig
 import tiktoken

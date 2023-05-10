@@ -1,3 +1,9 @@
+
+# ********************************************************
+#                      Munir Jojo-Verge (c)
+#                         May 10th 2023
+# ********************************************************
+
 import tkinter as tk
 from tkinter import font
 from openai_api_chat_completion import OpenAIChatCompletion
