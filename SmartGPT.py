@@ -112,12 +112,8 @@ class SmartGPT:
 
     def generate_self_reflection_prompt(self):
         """
-        This function generates a self-reflection prompt for the assistant to analyze and criticize the responses.
+        This function generates a self-reflection prompt for the assistant to analyze and criticize the responses.        
         
-        Args:
-            user_message (str): The user's input message.
-            responses (list): A list of assistant's responses to the user's message.
-
         Returns:
             str: The self-reflection prompt.
         """
@@ -125,7 +121,7 @@ class SmartGPT:
         # self_reflection_prompt = f'"Question:{user_message}"\n\n' + "\nAnswer options:".join(responses)
         
         # An additional instruction is added for the assistant to analyze and criticize the responses
-        self_reflection_prompt = "You are an expert researcher tasked with investigating the three answer options above. List all the flaws and faulty logic of each answer option. Be detailed, thorough and very analytical. Let's think step by step. Answer:"
+        self_reflection_prompt = "You are an expert researcher tasked with investigating the three answer options above. Analyze deeply the question and reason about each answer's assumptions, flaws and faulty logic in trying to answer it. Be detailed, thorough and very analytical. Let's think step by step through this investigation. Answer:"
         
         # Log the generated prompt for debugging purposes
         log.info(f"self_reflection_prompt: {self_reflection_prompt}")
@@ -137,11 +133,6 @@ class SmartGPT:
         This function generates a final selection prompt for the assistant to choose the best response,
         improve it, and provide the improved answer.
 
-        Args:
-            user_message (str): The user's input message.
-            responses (list): A list of assistant's responses to the user's message.
-            reflection_responses (list): A list of the assistant's self-reflection responses.
-
         Returns:
             str: The final selection prompt.
         """
@@ -149,7 +140,7 @@ class SmartGPT:
         #final_selection_prompt = f'Question:{user_message}\n\nAnswer options:' + "\n".join(responses) + "\nResearcher analysis:" + reflection_response
         
         # An additional instruction is added for the assistant to choose and improve the best response
-        final_selection_prompt = "You are noe an expert resolver tasked with 1) Based on the analysis above, resolve which of the answer options is the best, 2) Improve that answer, and 3) You must respond with the improved answer in full. Let's work this out in a step by step way to be sure we have the right answer. Your improved answer is:"
+        final_selection_prompt = "You are now an expert resolver tasked with 1) Based on the analysis above, resolve which of the answer options is the best, 2) Improve that answer, and 3) You must respond with the improved answer in full. Let's work out this resolving process in a step by step way to be sure we have the right answer. Your improved answer is:"
         
         # Log the generated prompt for debugging purposes
         log.info(f"final_selection_prompt: {final_selection_prompt}")

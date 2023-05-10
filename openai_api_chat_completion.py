@@ -144,9 +144,9 @@ class OpenAIChatCompletion:
         if conversation_tokens > (
             self.token_limit - self.buffer_tokens - self.max_tokens
         ):
-            # Get the last 12 messages (3 sets of objects detected, map, depth image, and previous command)
+            # Get the first 2 messages with the system role and the question prompt and the last xx messages
             first_messages = self.conversation[:2]
-            last_messages = self.conversation[-12:]
+            last_messages = self.conversation[-5:]
 
             # Create a new conversation with the task prompt and the last 3 sets of messages
             self.conversation = first_messages + last_messages
