@@ -1,4 +1,3 @@
-
 # ********************************************************
 #                      Munir Jojo-Verge (c)
 #                         May 10th 2023
@@ -11,17 +10,12 @@ import hydra
 from omegaconf import DictConfig, OmegaConf
 import datetime
 import os
-from io import StringIO
 import logging
-from hydra.utils import get_original_cwd, to_absolute_path
-
-# Initialize StringIO object
-log_capture_string = StringIO()
+from hydra.utils import get_original_cwd
 
 # Configure logging
-log = logging.getLogger(__name__)
-# logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s", stream=log_capture_string)
-logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+log = logging.getLogger(__name__) 
+
 
 @hydra.main(config_path="config", config_name="config")
 class SmartGPT:
@@ -161,57 +155,7 @@ class SmartGPT:
         log.info(f"final_selection_prompt: {final_selection_prompt}")
         
         return final_selection_prompt
-    
-    def save_results(self, user_input, final_output):
-        """
-        This function saves the user's input and the model's final output to a file.
-
-        Args:
-            user_input (str): The user's input.
-            final_output (str): The model's final output.
-        """
-        # Specify the directory where results will be saved
-        results_dir = os.path.join(get_original_cwd(), "results")
-
-        # If the directory doesn't exist, create it
-        if not os.path.exists(results_dir):
-            os.makedirs(results_dir)
-
-        # Create a timestamp for the results file
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-
-        # The filename for the results file includes the timestamp
-        results_filename = f"result_{timestamp}.txt"
-
-        # Write the user's input and the model's final output to the results file
-        with open(os.path.join(results_dir, results_filename), "w") as results_file:
-            results_file.write(f"User Input: {user_input}\n")
-            results_file.write(f"Logs:\n{log_capture_string.getvalue()}\n")
-            results_file.write(f"Final Output: {final_output}")
-
-        # Log the name of the file where results were saved
-        log.info(f"Results saved to file: {results_filename}")
-
-    def display_results(self, user_input, final_output, output_text_widget):
-        """
-        This function displays the user's input, logs, and the model's final output in a GUI text widget.
-
-        Args:
-            user_input (str): The user's input.
-            final_output (str): The model's final output.
-            output_text_widget (tkinter.Text): The tkinter Text widget where results will be displayed.
-        """
-        # Enable the text widget to insert text
-        output_text_widget.config(state=tk.NORMAL)
-
-        # Insert the user's input, logs, and the model's final output
-        output_text_widget.insert(tk.END, f"User Input: {user_input}\n")
-        output_text_widget.insert(tk.END, f"Logs:\n{log_capture_string.getvalue()}\n")
-        output_text_widget.insert(tk.END, f"Final Output: {final_output}\n")
-
-        # Disable the text widget to prevent the user from modifying the displayed text
-        output_text_widget.config(state=tk.DISABLED)
-
+        
     def process_user_input(self, user_input, hint):
         """
         This function processes the user input and generates the assistant's response.
