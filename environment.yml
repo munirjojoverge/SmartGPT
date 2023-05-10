@@ -1,0 +1,14 @@
+name: smartgpt
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - black=22.3.0
+  - openai
+  - mamba
+  - pip:
+    - tk
+    - omegaconf>=2.1.2,<2.2.0
+    - tiktoken
+    - hydra-core
